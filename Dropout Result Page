@@ -85,3 +85,131 @@ class DropoutResultActivity : AppCompatActivity() {
         // Set the reasons text (You can add a TextView in the layout for this purpose)
     }
 }
+
+//XML FILE
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#BAA8F8"
+    tools:context=".DropoutResultActivity">
+
+    <!-- Toolbar for Dropout Result -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarDropoutResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:title="DropoutResult"
+        android:titleTextColor="@android:color/white"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+        <!-- Home Button -->
+        <Button
+            android:id="@+id/homeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Home"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:textColor="@android:color/white"/>
+
+        <!-- Achievements Button -->
+        <Button
+            android:id="@+id/achievementsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Achievements"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:textColor="@android:color/white"/>
+
+        <!-- Dropout Button -->
+        <Button
+            android:id="@+id/dropoutButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dropout"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:textColor="@android:color/white"/>
+    </androidx.appcompat.widget.Toolbar>
+    <!-- Heading Text -->
+
+    <TextView
+        android:id="@+id/resultHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:text="This student is a dropout student"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <!-- Student Details -->
+    <TextView
+        android:id="@+id/studentName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Name: "
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/studentRegistrationNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:text="Registration Number: "
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/studentGrade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Grade: "
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/studentFeesPaid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Fees Paid: "
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/studentIndisciplineCases"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:text="Indiscipline Cases: "
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/dropoutRecoveryButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_marginTop="70dp"
+        android:text="Dropout Recovery" />
+</LinearLayout>
