@@ -1,0 +1,87 @@
+package com.example.school_dropoutscan
+
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+
+class DropoutResultActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_dropout_result)
+
+        // Initialize the toolbar
+        val toolbar = findViewById<Toolbar>(R.id.toolbarDropoutResult)
+        setSupportActionBar(toolbar)
+
+        // Home Button in Toolbar
+        val homeButton = findViewById<Button>(R.id.homeButton)
+        homeButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Achievements Button in Toolbar (it should stay in this activity)
+        val achievementsButton = findViewById<Button>(R.id.achievementsButton)
+        achievementsButton.setOnClickListener {
+            // This is already the Achievements Activity, so we can ignore this button
+        }
+
+        // Dropout Button in Toolbar
+        val dropoutButton = findViewById<Button>(R.id.dropoutButton)
+        dropoutButton.setOnClickListener {
+            val intent = Intent(this, DropoutActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Retrieve data passed from DropoutActivity
+        val name = intent.getStringExtra("name")
+        val registrationNumber = intent.getStringExtra("registrationNumber")
+        val grade = intent.getStringExtra("grade")
+        val feesPaid = intent.getDoubleExtra("feesPaid", 0.0)
+        val indisciplineCases = intent.getIntExtra("indisciplineCases", 0)
+
+        // Set the result heading
+        val resultHeading = findViewById<TextView>(R.id.resultHeading)
+        resultHeading.text = "This student is a dropout student"
+
+        // Display student details
+        val studentName = findViewById<TextView>(R.id.studentName)
+        studentName.text = "Name: $name"
+
+        val studentRegistrationNumber = findViewById<TextView>(R.id.studentRegistrationNumber)
+        studentRegistrationNumber.text = "Registration Number: $registrationNumber"
+
+        val studentGrade = findViewById<TextView>(R.id.studentGrade)
+        studentGrade.text = "Grade: $grade"
+
+        val studentFeesPaid = findViewById<TextView>(R.id.studentFeesPaid)
+        studentFeesPaid.text = "Fees Paid: ₹$feesPaid"
+
+        val studentIndisciplineCases = findViewById<TextView>(R.id.studentIndisciplineCases)
+        studentIndisciplineCases.text = "Indiscipline Cases: $indisciplineCases"
+
+        // Display reasons why the student is a dropout
+        val reasons = StringBuilder()
+
+        if (grade !in listOf("A", "B")) {
+            reasons.append("- Grade is below C\n")
+        }
+        if (feesPaid < 50000) {
+            reasons.append("- Fees paid are less than 50,000\n")
+        }
+        if (indisciplineCases > 3) {
+            reasons.append("- Number of indiscipline cases is greater than 3\n")
+        }
+
+        findViewById<Button>(R.id.dropoutRecoveryButton).setOnClickListener {
+            val intent = Intent(this, DropoutRecoveryActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Set the reasons text (You can add a TextView in the layout for this purpose)
+    }
+}
