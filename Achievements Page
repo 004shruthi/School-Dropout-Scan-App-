@@ -37,3 +37,153 @@ class AchievementsActivity : AppCompatActivity() {
         }
     }
 }
+
+//XML FILE
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#BAA8F8">
+
+    <!-- Toolbar for Achievements -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarAchievements"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:title="Achievements"
+        android:titleTextColor="@android:color/white"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
+
+        <!-- Home Button -->
+        <Button
+            android:id="@+id/homeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Home"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:textColor="@android:color/white"/>
+
+        <!-- Achievements Button -->
+        <Button
+            android:id="@+id/achievementsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Achievements"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:textColor="@android:color/white"/>
+
+        <!-- Dropout Button -->
+        <Button
+            android:id="@+id/dropoutButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dropout"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:textColor="@android:color/white"/>
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fitsSystemWindows="true"
+        android:overScrollMode="always"
+        android:scrollbars="vertical">
+
+        <!-- Scrollable content goes here -->
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                app:srcCompat="@drawable/img_1" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:text=" Our school has consistently been recognized for academic excellence, with students consistently ranking among the top in regional and national examinations. Over the years, we have achieved a remarkable track record of outstanding performances, setting a high standard for educational excellence. Our dedicated teaching staff, along with a rigorous curriculum, ensures that every student receives the tools and resources necessary for success. The combination of hard work and commitment to academic achievement has earned our school a reputation for excellence." />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                app:srcCompat="@drawable/img_2" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="30dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:text="In the realm of sports, our school has made its mark by producing outstanding athletes who have excelled at both local and state levels. From cricket to football, athletics to basketball, our students have demonstrated exceptional skill and sportsmanship. Our sports teams regularly bring home trophies and accolades, showcasing the importance of physical fitness and team spirit. Through specialized coaching, proper training, and continuous encouragement, we ensure that our students not only excel in academics but also in athletic pursuits." />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                app:srcCompat="@drawable/img_3" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:text="Our school’s commitment to arts and culture has been widely acknowledged. Our students have consistently won awards in music, dance, drama, and visual arts, both at the regional and national levels. By encouraging creativity and expression, we help students explore their talents in various forms of art, allowing them to shine in their chosen fields. We regularly host cultural events, workshops, and exhibitions that provide a platform for our students to showcase their creativity, fostering a thriving artistic community within the school." />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                app:srcCompat="@drawable/img_4" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginBottom="30dp"
+                android:text="We are also proud of our school's community service initiatives. Our students have been actively involved in social responsibility projects, from organizing charity events to volunteering in local communities. These efforts not only instill values of empathy and compassion but also teach students the importance of giving back to society. Our community service initiatives have received recognition from local authorities, and we continue to encourage our students to participate in activities that make a positive impact on the world around them." />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Content for Achievements -->
+    <View
+        android:id="@+id/footer"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="?attr/colorPrimary"/>
+
+</LinearLayout>
