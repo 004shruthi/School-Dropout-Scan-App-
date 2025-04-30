@@ -1,0 +1,99 @@
+package com.example.school_dropoutscan
+
+import android.content.Intent
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.view.View
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+
+class DropoutActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_dropout)
+
+        val toolbar = findViewById<Toolbar>(R.id.toolbarDropout)
+        val nameInput = findViewById<EditText>(R.id.nameInput)
+        val registrationNumberInput = findViewById<EditText>(R.id.registrationNumberInput)
+        val gradeInput = findViewById<EditText>(R.id.gradeInput)
+        val feesPaidInput = findViewById<EditText>(R.id.feesPaidInput)
+        val indisciplineCasesInput = findViewById<EditText>(R.id.indisciplineCasesInput)
+        val scanButton = findViewById<Button>(R.id.scanButton)
+        val progressBar = findViewById<ProgressBar>(R.id.progressBar)
+        val progressText = findViewById<TextView>(R.id.progressText)
+
+        setSupportActionBar(toolbar)
+
+        findViewById<Button>(R.id.homeButton).setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+        }
+
+        findViewById<Button>(R.id.achievementsButton).setOnClickListener {
+            startActivity(Intent(this, AchievementsActivity::class.java))
+        }
+
+        scanButton.setOnClickListener {
+            val name = nameInput.text.toString()
+            val registrationNumber = registrationNumberInput.text.toString()
+            val grade = gradeInput.text.toString()
+            val feesPaid = feesPaidInput.text.toString().toDoubleOrNull()
+            val indisciplineCases = indisciplineCasesInput.text.toString().toIntOrNull()
+
+            if (name.isEmpty() || registrationNumber.isEmpty() || grade.isEmpty() || feesPaid == null || indisciplineCases == null) {
+                Toast.makeText(this, "Please fill in all the fields", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Show progress bar and reset progress
+            progressBar.visibility = View.VISIBLE
+            progressText.visibility = View.VISIBLE
+            scanButton.isEnabled = false
+            progressBar.progress = 0
+            progressText.text = "0%"
+
+            val handler = Handler(Looper.getMainLooper())
+            var progress = 0
+
+            val runnable = object : Runnable {
+                override fun run() {
+                    if (progress < 100) {
+                        progress += 10
+                        progressBar.progress = progress
+                        progressText.text = "$progress%"
+                        handler.postDelayed(this, 300)
+                    } else {
+                        progressBar.visibility = View.GONE
+                        progressText.visibility = View.GONE
+                        scanButton.isEnabled = true
+
+                        val isDropout =
+                            grade !in listOf("A", "B") || feesPaid < 50000 || indisciplineCases > 3
+                        if (isDropout) {
+                            val intent = Intent(
+                                this@DropoutActivity,
+                                DropoutResultActivity::class.java
+                            ).apply {
+                                putExtra("name", name)
+                                putExtra("registrationNumber", registrationNumber)
+                                putExtra("grade", grade)
+                                putExtra("feesPaid", feesPaid)
+                                putExtra("indisciplineCases", indisciplineCases)
+                            }
+                            startActivity(intent)
+                        } else {
+                            Toast.makeText(
+                                this@DropoutActivity,
+                                "The student is not a dropout.",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+                }
+            }
+            handler.post(runnable)
+        }
+    }
+}
